@@ -7,7 +7,6 @@
 
 #define ADDRESS_LENGTH 64  // 64-bit memory addressing
 
-
 /* 
  * this function provides a standard way for your cache
  * simulator to display its final statistics (i.e., hit and miss)

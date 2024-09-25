@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "cachesim.h": "c"
+        "cachesim.h": "c",
+        "cacheio.h": "c",
+        "stdio.h": "c"
     }
 }

@@ -4,7 +4,7 @@ CFLAGS = -g -Wall -Werror -std=c99
 all: csim
 
 csim: cachesim.c 
-	$(CC) $(CFLAGS) -o cachesim main.c cachesim.c -lm 
+	$(CC) $(CFLAGS) -o cachesim main.c cachesim.c cacheio.c -lm 
 
 #
 # cleanup
