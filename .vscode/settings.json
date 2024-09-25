@@ -3,5 +3,8 @@
         "cachesim.h": "c",
         "cacheio.h": "c",
         "stdio.h": "c"
-    }
+        
+        
+    },
+    "editor.formatOnSave": true
 }
