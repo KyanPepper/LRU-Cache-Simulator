@@ -79,7 +79,8 @@ int read_write(Cache *cache, MemoryAccess memAccess)
 
 void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats)
 {
-    if (memAccess.operation == DATA_LOAD || memAccess.operation == DATA_STORE)
+
+    if (memAccess.operation == DATA_LOAD || memAccess.operation == DATA_STORE || memAccess.operation == DATA_MODIFY)
     {
         int result = read_write(cache, memAccess);
         switch (result)
@@ -88,13 +89,35 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats)
             stats->hits++;
             break;
         case 0:
-
             stats->misses++;
             break;
         case -1:
             stats->evictions++;
             stats->misses++;
             break;
+        default:
+            break;
         }
     }
+
+    if (memAccess.operation == DATA_MODIFY)
+    {
+        int result = read_write(cache, memAccess);
+        switch (result)
+        {
+        case 1:
+            stats->hits++;
+            break;
+        case 0:
+            stats->misses++;
+            break;
+        case -1:
+            stats->evictions++;
+            stats->misses++;
+            break;
+        default:
+            break;
+        }
+    }
+    
 }
