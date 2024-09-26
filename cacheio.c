@@ -89,7 +89,6 @@ MemoryAccess getAccess(FILE *trace_file)
         memAccess.address = address;
         memAccess.size = size;
     }
-    print_memAccess(memAccess);
     return memAccess;
 }
 

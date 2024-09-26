@@ -1,10 +1,9 @@
 {
-    "files.associations": {
-        "cachesim.h": "c",
-        "cacheio.h": "c",
-        "stdio.h": "c"
-        
-        
-    },
-    "editor.formatOnSave": true
+  "files.associations": {
+    "cachesim.h": "c",
+    "cacheio.h": "c",
+    "stdio.h": "c",
+    "errno.h": "c"
+  },
+  "editor.formatOnSave": true
 }

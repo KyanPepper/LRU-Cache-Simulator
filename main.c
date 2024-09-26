@@ -18,9 +18,17 @@ int main(int argc, char *argv[])
         printf("Error: Could not open file %s\n", options.tracefile);
         return 1;
     }
-
+    //Simulator runs in the main loop  
+    while (1)
+    {
         MemoryAccess memAccess = getAccess(trace_file);
-    print_memAccess(memAccess);
+        if (memAccess.operation == NONE)
+        {
+            break;
+        }
+    }
+    fclose(trace_file);
 
+    
     return 0;
 }
