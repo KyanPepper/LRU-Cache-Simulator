@@ -1,5 +1,4 @@
 #include "cachesim.h"
-#include "cacheio.h"
 int main(int argc, char *argv[])
 {
     CLOptions options = getCommandLineArgs(argc, argv);
@@ -18,7 +17,11 @@ int main(int argc, char *argv[])
         printf("Error: Could not open file %s\n", options.tracefile);
         return 1;
     }
-    //Simulator runs in the main loop  
+
+    Cache cache = createCache(options.s, options.E, options.b);
+    CacheStats stats = initCacheStats();
+
+    // Simulator runs in the main loop
     while (1)
     {
         MemoryAccess memAccess = getAccess(trace_file);
@@ -28,7 +31,6 @@ int main(int argc, char *argv[])
         }
     }
     fclose(trace_file);
-
-    
+    printf("End of simulation\n");
     return 0;
 }

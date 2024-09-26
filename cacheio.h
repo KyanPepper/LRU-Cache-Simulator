@@ -1,5 +1,6 @@
 #include <stdio.h>
 /// @brief This file is for IO operations for the cache simulation
+
 typedef enum
 {
     INSTRUCTION_LOAD, // 'I' - Instruction load
@@ -39,10 +40,8 @@ extern MemoryAccess getAccess(FILE *tracefile);
  */
 extern void print_summary(int hits, int misses, int evictions);
 
-
-//for debugging purposes print the memory access operation
+// for debugging purposes print the memory access operation
 extern void print_memAccess(MemoryAccess operation);
 
-//for debugging purposes print the command line arguments
+// for debugging purposes print the command line arguments
 extern void print_CLOptions(CLOptions options);
-

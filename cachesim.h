@@ -4,13 +4,16 @@
 #include <stdio.h>
 #include <math.h>
 #include <errno.h>
+#include <time.h>
+#include "cacheio.h"
+
 #define ADDRESS_LENGTH 64 // 64-bit memory addressing
 
 typedef struct CacheLine
 {
     int valid;
     int tag;
-    int last_used;
+    time_t time; // Last time the line was used: Evict Smallest Value
 } CacheLine;
 
 typedef struct CacheSet
@@ -24,10 +27,24 @@ typedef struct Cache
     int lineCount;
     int offsetBits;
     int setsLen; // Number of sets in the cache
-    CacheSet *sets;
+    CacheSet *sets; 
 } Cache;
+
+typedef struct CacheStats
+{
+    int hits;
+    int misses;
+    int evictions;
+} CacheStats;
 
 // Creates a cache with s sets, E lines per set, and b block bits
 extern Cache createCache(int s, int E, int b);
 
-extern void freeCache(Cache *cache);
+// Seeds stats with 0 hits, misses, and evictionss
+extern CacheStats initCacheStats();
+
+// Reads or writes (same for the simulation) from the cache returns 1 if hit, 0 if miss, -1 for eviction
+int read_write(Cache *cache, MemoryAccess memAccess);
+
+// Preforms calls to correct operation and updates the cache stats with results from the memory access
+extern void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats);

@@ -3,7 +3,8 @@
     "cachesim.h": "c",
     "cacheio.h": "c",
     "stdio.h": "c",
-    "errno.h": "c"
+    "errno.h": "c",
+    "__locale": "c"
   },
   "editor.formatOnSave": true
 }
