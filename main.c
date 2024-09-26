@@ -8,11 +8,11 @@ int main(int argc, char *argv[])
 
     if (options.err == 1)
     {
-        printf("Error: Invalid command line options\n");
+        printf("Error: Invalid command line options. Try using the -h for help \n");
         return 1;
     }
 
-    if (trace_file == NULL)
+        if (trace_file == NULL)
     {
         printf("Error: Could not open file %s\n", options.tracefile);
         return 1;
