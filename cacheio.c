@@ -42,7 +42,7 @@ void print_memAccess(MemoryAccess operation)
     default:
         printf("Unknown operation");
     }
-    printf(" %x,%d ", operation.address, operation.size);
+    printf(" %llx,%d ", operation.address, operation.size);
 }
 
 /*
@@ -80,9 +80,9 @@ MemoryAccess getAccess(FILE *trace_file)
 {
     MemoryAccess memAccess = {NONE, 0, 0};
     char op_char;
-    int address;
+    uint64_t address;
     int size;
-    if (fscanf(trace_file, " %c %x,%d", &op_char, &address, &size) != EOF)
+    if (fscanf(trace_file, " %c %llx,%d", &op_char, &address, &size) != EOF)
     {
         memAccess.operation = parse_operation(op_char);
         memAccess.address = address;

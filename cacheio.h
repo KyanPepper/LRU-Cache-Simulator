@@ -13,7 +13,7 @@ typedef enum
 typedef struct
 {
     MemOperation operation; // Type of memory operation
-    int address;            // Memory address
+    u_int64_t address;      // Memory address 64 bits
     int size;               // Size of memory operation
 } MemoryAccess;
 
