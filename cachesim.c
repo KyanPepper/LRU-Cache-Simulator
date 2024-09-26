@@ -83,6 +83,7 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOp
 {
     char str[64]; // String to hold the result of the memory access
 
+    // Technically unnecessary, but it makes the code more readable
     if (memAccess.operation == DATA_LOAD || memAccess.operation == DATA_STORE || memAccess.operation == DATA_MODIFY)
     {
 
@@ -98,7 +99,7 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOp
             stats->misses++;
             break;
         case -1:
-            strcpy(str, "miss");
+            strcpy(str, "miss eviction");
             stats->evictions++;
             stats->misses++;
             break;
@@ -121,7 +122,7 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOp
             stats->misses++;
             break;
         case -1:
-            strcat(str, " miss");
+            strcat(str, " miss eviction");
             stats->evictions++;
             stats->misses++;
             break;
@@ -134,6 +135,13 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOp
     if (options.verbose == 1)
     {
         print_memAccess(memAccess);
-        printf(" %s\n", str);
+        printf("%s\n", str);
     }
+}
+
+void printCacheStats(CacheStats stats)
+{
+    printf("Hits: %d ", stats.hits);
+    printf("Misses: %d ", stats.misses);
+    printf("Evictions: %d\n", stats.evictions);
 }

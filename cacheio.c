@@ -25,7 +25,6 @@ static MemOperation parse_operation(char op_char)
 // Print the operation to the console
 void print_memAccess(MemoryAccess operation)
 {
-    printf("Printing Operation: ");
     switch (operation.operation)
     {
     case INSTRUCTION_LOAD:
@@ -43,7 +42,7 @@ void print_memAccess(MemoryAccess operation)
     default:
         printf("Unknown operation");
     }
-    printf(" %x,%d\n", operation.address, operation.size);
+    printf(" %x,%d ", operation.address, operation.size);
 }
 
 /*

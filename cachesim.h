@@ -46,3 +46,7 @@ extern CacheStats initCacheStats();
 
 // Preforms calls to correct operation and updates the cache stats with results from the memory access
 extern void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOptions options);
+
+//Prints the cache summary
+extern void printCacheStats(CacheStats stats);
+
