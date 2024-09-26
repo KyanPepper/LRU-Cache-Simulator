@@ -41,12 +41,11 @@ typedef struct CacheStats
 // Creates a cache with s sets, E lines per set, and b block bits
 extern Cache createCache(int s, int E, int b);
 
-// Seeds stats with 0 hits, misses, and evictionss
+// Seeds stats with 0 hits, misses, and evictions
 extern CacheStats initCacheStats();
 
 // Preforms calls to correct operation and updates the cache stats with results from the memory access
 extern void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOptions options);
 
-//Prints the cache summary
+// Prints the cache summary
 extern void printCacheStats(CacheStats stats);
-

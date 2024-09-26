@@ -145,3 +145,45 @@ void printCacheStats(CacheStats stats)
     printf("Misses: %d ", stats.misses);
     printf("Evictions: %d\n", stats.evictions);
 }
+
+int main(int argc, char *argv[])
+{
+    // Get command line arguments
+    CLOptions options = getCommandLineArgs(argc, argv);
+
+    FILE *trace_file = fopen(options.tracefile, "r");
+
+    // Command Line Error Handling
+    if (options.err == 1)
+    {
+        printf("Error: Invalid command line options. Try using the -h for help \n");
+        return 1; // exit failure
+    }
+
+    // File Error Handling
+    if (trace_file == NULL)
+    {
+        printf("Error: Could not open file %s\n", options.tracefile);
+        return 1; // exit failure
+    }
+
+    // Arrange
+    Cache cache = createCache(options.s, options.E, options.b);
+    CacheStats stats = initCacheStats();
+
+    // Simulator runs in the main loop
+    while (1)
+    {
+        MemoryAccess memAccess = getAccess(trace_file);
+        if (memAccess.operation == NONE)
+        {
+            break;
+        }
+        preformAccess(&cache, memAccess, &stats, options);
+    }
+
+    printCacheStats(stats);
+    fclose(trace_file);
+    printf("End of simulation\n");
+    return 0; // exit success
+}
