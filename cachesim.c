@@ -76,3 +76,25 @@ int read_write(Cache *cache, MemoryAccess memAccess)
     cache->sets[setIndex].lines[index].time = clock();
     return -1; // Return Eviction Value
 }
+
+void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats)
+{
+    if (memAccess.operation == DATA_LOAD || memAccess.operation == DATA_STORE)
+    {
+        int result = read_write(cache, memAccess);
+        switch (result)
+        {
+        case 1:
+            stats->hits++;
+            break;
+        case 0:
+
+            stats->misses++;
+            break;
+        case -1:
+            stats->evictions++;
+            stats->misses++;
+            break;
+        }
+    }
+}
