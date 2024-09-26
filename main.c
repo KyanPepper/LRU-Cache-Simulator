@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
         {
             break;
         }
+        preformAccess(&cache, memAccess, &stats, options);
     }
     fclose(trace_file);
     printf("End of simulation\n");

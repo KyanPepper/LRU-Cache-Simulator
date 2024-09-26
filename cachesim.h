@@ -5,6 +5,7 @@
 #include <math.h>
 #include <errno.h>
 #include <time.h>
+#include <string.h>
 #include "cacheio.h"
 
 #define ADDRESS_LENGTH 64 // 64-bit memory addressing
@@ -27,7 +28,7 @@ typedef struct Cache
     int lineCount;
     int offsetBits;
     int setsLen; // Number of sets in the cache
-    CacheSet *sets; 
+    CacheSet *sets;
 } Cache;
 
 typedef struct CacheStats
@@ -43,8 +44,5 @@ extern Cache createCache(int s, int E, int b);
 // Seeds stats with 0 hits, misses, and evictionss
 extern CacheStats initCacheStats();
 
-// Reads or writes (same for the simulation) from the cache returns 1 if hit, 0 if miss, -1 for eviction
-int read_write(Cache *cache, MemoryAccess memAccess);
-
 // Preforms calls to correct operation and updates the cache stats with results from the memory access
-extern void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats);
+extern void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOptions options);

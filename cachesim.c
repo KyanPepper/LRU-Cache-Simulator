@@ -31,6 +31,7 @@ CacheStats initCacheStats()
     return stats;
 }
 
+// Reads or writes (same for the simulation) from the cache returns 1 if hit, 0 if miss, -1 for eviction
 int read_write(Cache *cache, MemoryAccess memAccess)
 {
     int setIndex = (memAccess.address >> cache->offsetBits) & ((1 << cache->indexBits) - 1); // Human readable: lhs (Shave off offset bits) & rhs (Mask index bits)
@@ -77,21 +78,27 @@ int read_write(Cache *cache, MemoryAccess memAccess)
     return -1; // Return Eviction Value
 }
 
-void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats)
+// Preforms calls to correct operation and updates the cache stats with results from the memory access
+void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats, CLOptions options)
 {
+    char str[64]; // String to hold the result of the memory access
 
     if (memAccess.operation == DATA_LOAD || memAccess.operation == DATA_STORE || memAccess.operation == DATA_MODIFY)
     {
+
         int result = read_write(cache, memAccess);
         switch (result)
         {
         case 1:
+            strcpy(str, "hit");
             stats->hits++;
             break;
         case 0:
+            strcpy(str, "miss");
             stats->misses++;
             break;
         case -1:
+            strcpy(str, "miss");
             stats->evictions++;
             stats->misses++;
             break;
@@ -106,12 +113,15 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats)
         switch (result)
         {
         case 1:
+            strcat(str, " hit");
             stats->hits++;
             break;
         case 0:
+            strcat(str, " miss");
             stats->misses++;
             break;
         case -1:
+            strcat(str, " miss");
             stats->evictions++;
             stats->misses++;
             break;
@@ -119,5 +129,11 @@ void preformAccess(Cache *cache, MemoryAccess memAccess, CacheStats *stats)
             break;
         }
     }
-    
+
+    // Print the memory access if verbose is enabled
+    if (options.verbose == 1)
+    {
+        print_memAccess(memAccess);
+        printf(" %s\n", str);
+    }
 }

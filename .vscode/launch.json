@@ -4,13 +4,13 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cachesim",
-            "args": [],
+            "program": "${workspaceFolder}/cachesim",         
+            "args": ["-v", "-s4", "-E4", "-b4", "-ttraces/trace01.dat"],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb"
+            "MIMode": "lldb"        
         }
     ]
 }
