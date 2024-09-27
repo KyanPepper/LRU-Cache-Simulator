@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "headers.h"
 /// @brief This file is for IO operations for the cache simulation
 
 typedef enum
@@ -13,7 +14,7 @@ typedef enum
 typedef struct
 {
     MemOperation operation; // Type of memory operation
-    u_int64_t address;      // Memory address 64 bits
+    int64 address;          // Memory address 64 bits
     int size;               // Size of memory operation
 } MemoryAccess;
 

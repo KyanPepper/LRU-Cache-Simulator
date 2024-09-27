@@ -8,6 +8,7 @@
 #include <string.h>
 #include "cacheio.h"
 
+
 #define ADDRESS_LENGTH 64 // 64-bit memory addressing
 
 typedef struct CacheLine
