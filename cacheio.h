@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
 #include "headers.h"
 /// @brief This file is for IO operations for the cache simulation
 

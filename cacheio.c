@@ -1,7 +1,4 @@
 #include "cacheio.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 
 // Parse the operation character to a MemOperation
 static MemOperation parse_operation(char op_char)

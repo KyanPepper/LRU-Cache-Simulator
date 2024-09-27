@@ -1,6 +1,8 @@
 // Assign correct type to operating system
 #ifdef __APPLE__
 #define int64 long long
+#elif __windows__
+#define int64 long long
 #else
 #define int64 long
 #endif
