@@ -16,5 +16,8 @@
     "vector": "c",
     "stdlib.h": "c"
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "cachesim"
+  ]
 }
