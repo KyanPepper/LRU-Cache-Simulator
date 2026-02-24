@@ -2,8 +2,6 @@
 
 ## By: Kyan Kotschevar-Smead
 
-## Course: CPTS 360 PA 1
-
 ### Demo: [Watch Here](https://youtu.be/AxVC4h9AcKU)
 
 ## Overview
